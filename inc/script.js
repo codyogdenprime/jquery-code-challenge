@@ -1,17 +1,19 @@
 var colors = ["red","yellow","green","blue"];
 
 var updateTotals = function () {
+	console.log( "updatetotals" );
 	for( var i in colors ) {
 		var color = colors[i];
-		$("#" + color + "-total").html( $("#boxes > ." + color).length );
+		$("#" + color).html( "Total " + color + ": " + $(".container > ." + color).length );
 	}
 };
 
 var addbox = function() {
+	console.log( "hello");
 	console.log( "New Color:", $( this ).data("color") );
 	var box = $("<div />", { class: "box" });
 		box.addClass( $( this ).data("color") );
-	$("#boxes").append( box );
+	$(".container").append( box );
 	updateTotals();
 };
 
@@ -21,7 +23,7 @@ var removebox = function() {
 };
 
 $(document).ready(function(){
-	$(".controls button").on("click", addbox );
+	$("body").on("click", ".color-button", addbox );
 	$("body").on("click", ".box", removebox );
 	updateTotals();
 });
